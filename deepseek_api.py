@@ -1,12 +1,13 @@
 from openai import OpenAI
-from config import DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL, DEEPSEEK_MODEL
+from config import DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, MOCK_MODE
 
 
-client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url=DEEPSEEK_BASE_URL)
+client = None if MOCK_MODE else OpenAI(api_key=DEEPSEEK_API_KEY, base_url=DEEPSEEK_BASE_URL)
 
 
 def ask(system_prompt: str, user_message: str) -> str:
-    """Отправляет запрос в DeepSeek и возвращает текст ответа."""
+    if MOCK_MODE:
+        return f"[mock] Я слышу тебя. Ты написал: «{user_message}». Продолжим."
     response = client.chat.completions.create(
         model=DEEPSEEK_MODEL,
         messages=[
