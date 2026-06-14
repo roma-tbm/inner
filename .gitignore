@@ -1,0 +1,19 @@
+# Переменные окружения — никогда не коммитить
+.env
+
+# Виртуальное окружение Python
+venv/
+.venv/
+env/
+
+# Кэш Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Системные файлы macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
